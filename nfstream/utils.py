@@ -107,6 +107,7 @@ def update_performances(performances, is_linux, flows_count):
 
 class RepeatedTimer(object):
     """ Repeated timer thread """
+
     def __init__(self, interval, function, *args, **kwargs):
         self._timer = None
         self.interval = interval
@@ -131,19 +132,22 @@ class RepeatedTimer(object):
         self._timer.cancel()
         self.is_running = False
 
-            
+
 def chunks_of_list(lst, n):
     """ create list of chunks of size n from a list"""
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
 
+
 def set_affinity(idx):
     """ CPU affinity setter """
     if platform.system() == "Linux":
         c_cpus = psutil.Process().cpu_affinity()
+        print("CPUs available: ", c_cpus)  # DEBUG ONLY
         temp = list(chunks_of_list(c_cpus, 2))
         x = len(temp)
         try:
+            print(f"setting process to:", list(temp[idx % x]))  # DEBUG ONLY
             psutil.Process().cpu_affinity(list(temp[idx % x]))
         except OSError as err:
             print("WARNING: failed to set CPU affinity ({err})".format(err))
