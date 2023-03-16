@@ -434,7 +434,8 @@ class NFStreamer(object):
                             child_error = recv.message
                             break
                         elif recv.id == NFEvent.ALL_AFFINITY_SET:
-                            set_affinity(0)  # we pin streamer to core 0 as it's the less intensive task and several services runs
+                            pass
+                            # set_affinity(0)  # we pin streamer to core 0 as it's the less intensive task and several services runs
                             #                  by default on this core.
                         elif recv.id == NFEvent.SOCKET_CREATE:
                             conn_cache[recv.key] = [recv.process_name, recv.process_pid]

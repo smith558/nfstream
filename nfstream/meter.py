@@ -192,7 +192,7 @@ def meter_workflow(source, snaplen, decode_tunnels, bpf_filter, promisc, n_roots
                    idle_timeout, active_timeout, accounting_mode, udps, n_dissections, statistics, splt,
                    channel, tracker, lock, group_id, system_visibility_mode, socket_buffer_size):
     """ Metering workflow """
-    set_affinity(root_idx+1)
+    # set_affinity(root_idx+1)
     ffi, lib = create_engine()
     if lib is None:
         send_error(root_idx, channel, ENGINE_LOAD_ERR)
