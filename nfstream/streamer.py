@@ -299,6 +299,7 @@ class NFStreamer(object):
                 self._n_meters = c_cpus - 1
         if self._n_meters == 0:  # one CPU case
             self._n_meters = 1
+        print('n_meters:', self._n_meters)  # DEBUG ONLY
 
     @property
     def max_nflows(self):
